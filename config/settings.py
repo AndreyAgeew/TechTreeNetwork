@@ -28,7 +28,9 @@ SECRET_KEY = os.getenv("SECRETKEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [urlsplit('DOMAIN_NAME').hostname]
+DOMAIN_NAME = os.getenv("DOMAIN_NAME")
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

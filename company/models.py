@@ -66,3 +66,13 @@ class Company(models.Model):
 
         # В противном случае определяем уровень на основе поставщика
         return self.supplier.hierarchy_level + 1
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    model = models.CharField(max_length=255)
+    release_date = models.DateField()
+    company = models.ForeignKey(Company, related_name='products', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} ({self.model})"
