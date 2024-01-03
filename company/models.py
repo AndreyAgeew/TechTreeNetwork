@@ -23,9 +23,9 @@ class Company(models.Model):
     RETAIL_NETWORK = 1
     INDIVIDUAL_ENTREPRENEUR = 2
     COMPANY_TYPES = [
-        (FACTORY, 'Factory'),
-        (RETAIL_NETWORK, 'Retail Network'),
-        (INDIVIDUAL_ENTREPRENEUR, 'Individual Entrepreneur')
+        (FACTORY, "Factory"),
+        (RETAIL_NETWORK, "Retail Network"),
+        (INDIVIDUAL_ENTREPRENEUR, "Individual Entrepreneur"),
     ]
 
     name = models.CharField(max_length=255)
@@ -35,7 +35,9 @@ class Company(models.Model):
     city = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
     house_number = models.CharField(max_length=20)
-    supplier = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='clients')
+    supplier = models.ForeignKey(
+        "self", on_delete=models.SET_NULL, null=True, blank=True, related_name="clients"
+    )
     debt = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -78,10 +80,13 @@ class Product(models.Model):
         release_date (DateField): Дата выхода продукта на рынок.
         company (ForeignKey): Ссылка на компанию, которая предлагает этот продукт.
     """
+
     name = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     release_date = models.DateField()
-    company = models.ForeignKey(Company, related_name='products', on_delete=models.CASCADE)
+    company = models.ForeignKey(
+        Company, related_name="products", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         """

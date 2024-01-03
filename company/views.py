@@ -16,7 +16,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     serializer_class = CompanySerializer  # Указываем используемый сериализатор
     permission_classes = [IsActiveEmployee]  # Доступ только для активных сотрудников
     filter_backends = [filters.SearchFilter]  # Включаем возможность поиска
-    search_fields = ['country']  # Поля для поиска
+    search_fields = ["country"]  # Поля для поиска
 
     def perform_update(self, serializer):
         """
